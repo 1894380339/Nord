@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Product, Category
 from django.views import View
 
+
 def productView(request):
     categorys =Category.objects.all()
     products = Product.objects.all()
@@ -15,3 +16,7 @@ class category(View):
             category = Category.objects.get(id=request.POST["category_id"])
             products = Product.objects.filter(category=category)
             return render(request, 'homepage/product.html', {'products':products,'categorys':categorys})
+
+def product_detail(request,id):
+    product = Product.objects.get(pk=id)
+    return render(request, 'homepage/product_detail.html', {'product':product})

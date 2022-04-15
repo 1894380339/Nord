@@ -33,3 +33,6 @@ padding-right: 2rem;
 .lv-list .category input:hover{
     color: coral;
 }
+.box-element{
+    cursor: pointer;
+}

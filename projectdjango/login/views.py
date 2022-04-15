@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login
 from requests import request
 from user.models import CustomerUser
+from django.contrib import messages
 # Create your views here.
 class class_login(View):
     def get(self, request):
@@ -13,6 +14,7 @@ class class_login(View):
             password = request.POST["password"]
             user =authenticate(request, username=username, password=password)
             if user is None:
+                messages.warning(request, 'Your account not found.')
                 return render(request,"homepage/login.html",{"context":"Invalid User"})
             login(request,user)
             # return redirect('/')
