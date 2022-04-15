@@ -1,0 +1,107 @@
+{% extends 'homepage/base.html'%}
+{% load static %}
+{% block cssblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+
+{% endblock %}
+{% block contentblock %}
+{% load static %}
+{% comment %} <form class="form" action="" method="post">  {% endcomment %}
+  {% comment %} {% url 'order:url_add' %} {% endcomment %}
+<form id="formPlaceOrder" action="{%url 'cart:url_add'%}" method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="shopping-cart">
+        <h4>Your Items</h4>
+        <div class="column-labels">
+          <label class="product-image">Image</label>
+          <label class="product-details">Product</label>
+          <label class="product-price">Price</label>
+          <label class="product-quantity">Quantity</label>
+          <label class="product-removal">Remove</label>
+          <label class="product-line-price">Total</label>
+        </div>
+        {% for item in items%}
+          <div class="product">
+            <div class="product-image">
+              <img src="{{item.product.imageURL}}">
+            </div>
+            <div class="product-details">
+              <input name="cart_id" hidden value="{{cart.id}}"></input>
+              <div class="product-title">{{item.product.title}}</div>
+              <p class="product-description"></p>
+            </div>
+            <div class="product-price">{{item.product.price}}</div>
+            <div class="product-quantity">
+              <input type="number" value="{{item.quantity}}" min="1">
+            </div>
+            <div class="product-removal">
+              <button class="remove-product">Remove</button>
+            </div>
+            <div class="product-line-price">{{item.get_total}}</div>
+          </div>
+        {%endfor%} 
+        <div class="totals">
+            <div class="totals-item">
+              <label>Subtotal</label>
+              <div class="totals-value" id="cart-subtotal" name="subtotal">{{cart.get_cart_total}}</div>
+            </div>
+          <div class="totals-item totals-item-total">
+            <label>Grand Total</label>
+            <div class="totals-value" id="cart-total"></div>
+          </div>
+        </div>
+            
+            {% comment %} <button class="checkout">Checkout</button> {% endcomment %}
+      
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <h4>Your Information</h4>
+                  {% comment %} <input name="" type="hidden" value=""> {% endcomment %}
+            <div class="form-group">
+                <label for="txtCustomerName">Name</label>
+                <input type="text" class="required form-control" id="txtCustomerName" name="txtCustomerName" placeholder="Your Name" value="{{user.username}}"">
+            </div>
+            <div class="form-group">
+                <label for="txtPhone">Phone number</label>
+                <input type="text" class="required form-control" id="txtPhone" name="phone" placeholder="Your phone" value="{{user.phone_number}}">
+                <input type="hidden" name="txtEmail" value="" id="txtEmail" value =value="{{user.email}}>
+            </div>
+            
+            <div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="chosePickupAddress" checked="checked" value="shipToHome"> Delivery
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="chosePickupAddress" value="pickFromShop"> At nearest shop
+                    </label>
+                </div>
+            </div>
+      
+      
+            <div class="form-group" id="pnlAddress">
+                <input type="text" class="required form-control" id="txtAddressLine" name="address" placeholder="Your Address" value="{{user.address}}">
+      
+            </div>
+      
+            <div class="form-group">
+                <label for="txtNote">Note</label>
+                <textarea rows="2" class="form-control" id="txtNote" name="description"></textarea>
+            </div>
+            <input type="submit" class="js-btnPlaceOrder btn btn-info fw" style="width:100%; " value="Place order"></input>
+        <hr>
+        <a href="/" class="btn btn-warning fw" style="width:100%;">Continue to shopping</a>
+      </div>
+    </div>
+  </div>
+</form>
+{% comment %} </form> {% endcomment %}
+{% endblock %}
+    {% block jsblock %}
+    {% endblock %}
+
