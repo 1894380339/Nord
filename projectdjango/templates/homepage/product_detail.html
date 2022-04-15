@@ -1,0 +1,342 @@
+{% extends 'homepage/base.html'%}
+{% load static %}
+{% block cssblock %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
+
+{% endblock %}
+{% block contentblock %}
+{% load static %}
+{% comment %} <ul class="lv-header-main-nav lv-list"> 
+	{% for category in categorys %}
+	<form action="{%url 'product:url_category' %}" method="post" class="category">
+		{% csrf_token %}
+		<input type="text" hidden name="category_id" value={{category.id}}> </input>
+		<li> <input class=""type="submit" value="{{category.title}}" </input></li>
+	</form>
+	{% endfor%}
+</ul> {% endcomment %}
+
+
+<div class="container-fluid mb-4">
+        <div class="col-sm-12 px-0">
+            <div class="breadcrumb">
+
+                <a href="/product/"><i class="fa fa-chevron-left"></i></a>
+                <span class="mx-2">/</span>
+    
+                    <strong class="text-black">{{product.title}}</strong>
+            </div>
+    </div>
+    
+    <div class="row product-info  px-0">
+        <div class="col-md-4 col-12">
+            <div class="px-1">
+            <img src="{{product.imageURL}}" id="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-8 col-12">
+            <div class="ditem">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="text-black display-5">
+                            <span>{{product.title}}</span>
+                        </h4>
+    
+    
+                            <p class="text-black mb-0">Chất liệu: <a href="/ChatLieu/cotton-compact-4s.jpg" class="swipebox"><b>Cotton Compact 4S</b></a></p>
+    
+    
+                            <p class="text-black">Áo Thun Form Tiêu Chuẩn / Mã số: 0020332</p>
+    
+    
+    
+                            <h5 class="price mb-4">{{product.price}}</h5>
+    
+    
+    
+                        <table class="table table-condensed table-productvariants">
+                                        <tbody><tr>
+                                            
+                                            <td>Đen, S</td>
+                                                <td class="text-right">
+                                                    <a class="dsCuaHangCoTonKho text-black" href="javascript:void(0);" data-placement="left" data-content="<div id=&quot;dsCuaHangConHang&quot;><div><div id=&quot;rIndex0&quot;><h5 class=&quot;mb-0&quot;><a href=&quot;javascript:void(0);&quot; title=&quot;#collapse0&quot; aria-controls=&quot;collapse0&quot; class=&quot;btn btn-link&quot;><i class=&quot;fa fa-map-signs&quot;></i>&amp;nbsp;&amp;nbsp;Đông Nam Bộ &amp; Tây Nguyên</a></h5></div><div id=&quot;collapse0&quot; class=&quot;collapse&quot; aria-labelledby=&quot;rIndex0&quot; data-parent=&quot;#dsCuaHangConHang&quot;><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Bình Dương: 187 Yersin, Tp.TDM</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Dĩ An - 82A Nguyễn An Ninh, Dĩ An, BD</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Thuận An - 132, Ngô Quyền, Thuận An, B.Dương</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Biên Hòa: 30 Dương Tử Giang</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Buôn Ma Thuột - 64 Phan Chu Trinh</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Tây Ninh: 586 Cách Mạng Tháng 8, P.3</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Đồng Xoài - 766 Phú Riềng Đỏ</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Vũng Tàu: 528 Trương Công Định</p></div></div><div><div id=&quot;rIndex1&quot;><h5 class=&quot;mb-0&quot;><a href=&quot;javascript:void(0);&quot; title=&quot;#collapse1&quot; aria-controls=&quot;collapse1&quot; class=&quot;btn btn-link&quot;><i class=&quot;fa fa-map-signs&quot;></i>&amp;nbsp;&amp;nbsp;Tp. Hồ Chí Minh</a></h5></div><div id=&quot;collapse1&quot; class=&quot;collapse&quot; aria-labelledby=&quot;rIndex1&quot; data-parent=&quot;#dsCuaHangConHang&quot;><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.5: 190 Nguyễn Trãi, P.3</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Tân Phú: 189, Hòa Bình</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Bình Thạnh: 138 Đinh Tiên Hoàng</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.10: 770F Sư Vạn Hạnh Q.10</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.Bình Tân - 232 Lê Van Qu?i</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Thủ Đức: 336 Võ Văn Ngân</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.7: 323 Huỳnh Tấn Phát</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Hóc Môn - 39 đg. Quang Trung, Hóc Môn</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q6 - 102 Hậu Giang Q.6 Tp. HCM</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.12 - 290 Phan Văn Hớn Q.12</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Gò Vấp: 417 Quang Trung</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Gò Vấp: 1096 Quang Trung</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.10: 286 3 Tháng 2</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q9 - 114 Đỗ Xuân Hợp, Q.9</p></div></div><div><div id=&quot;rIndex2&quot;><h5 class=&quot;mb-0&quot;><a href=&quot;javascript:void(0);&quot; title=&quot;#collapse2&quot; aria-controls=&quot;collapse2&quot; class=&quot;btn btn-link&quot;><i class=&quot;fa fa-map-signs&quot;></i>&amp;nbsp;&amp;nbsp;Tây Nam Bộ</a></h5></div><div id=&quot;collapse2&quot; class=&quot;collapse&quot; aria-labelledby=&quot;rIndex2&quot; data-parent=&quot;#dsCuaHangConHang&quot;><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Tân An - 492 Hùng Vương</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Mỹ Tho: 193N Ấp Bắc</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Rạch Giá: 290 Nguyễn Trung Trực</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Sa Đéc - 289 Nguyễn Sinh Sắc, Sa Đéc</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Vĩnh Long: 27A Phạm Thái Bường, P4</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Trà Vinh - 09 Nguyễn Đáng P.9 Tp.Trà Vinh</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Bến Tre: 209 Đồng Khởi</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Cần Thơ: 57 Nguyễn Trãi</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe L.Xuyên: 47 Tôn Đức Thắng</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Cà Mau - 111 Trần Hưng Đạo</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Sóc Trăng: 126 Tôn Đức Thắng</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Cao Lãnh: 66A Tôn Đức Thắng</p></div></div></div>" data-html="true" data-original-title="" title="">
+                                                        <b>35</b> CH còn
+                                                    </a>
+                                                </td>
+                                                    <td class="text-right">
+                                                        <form action="/cart/AddVariantToCart" method="POST">
+                                                            <input type="hidden" name="__ProductId" value="6c40eee9-3cce-98ad-a4f3-0017f78565f2">
+                                                            <input type="hidden" name="__VariantId" value="ce997ae9-612d-99ad-a4f3-0017f78565f2">
+                                                            <input type="hidden" name="__Characteristics" value="Đen, S">
+                                                            <input type="hidden" name="__Category" value="gu-don-gian">
+                                                            <a href="javascript:void(0);" class="js-addVariantToCart" style="color:#ff0000"><i class="fa fa-plus-circle" data-toggle="tooltip" title="" data-original-title="Thêm Đen, S vào giỏ hàng"></i> Chọn mua</a>
+                                                        </form>
+                                                    </td>
+    
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td>Đen, M</td>
+                                                <td class="text-right">
+                                                    <a class="dsCuaHangCoTonKho text-black" href="javascript:void(0);" data-placement="left" data-content="<div id=&quot;dsCuaHangConHang&quot;><div><div id=&quot;rIndex0&quot;><h5 class=&quot;mb-0&quot;><a href=&quot;javascript:void(0);&quot; title=&quot;#collapse0&quot; aria-controls=&quot;collapse0&quot; class=&quot;btn btn-link&quot;><i class=&quot;fa fa-map-signs&quot;></i>&amp;nbsp;&amp;nbsp;Đông Nam Bộ &amp; Tây Nguyên</a></h5></div><div id=&quot;collapse0&quot; class=&quot;collapse&quot; aria-labelledby=&quot;rIndex0&quot; data-parent=&quot;#dsCuaHangConHang&quot;><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Bình Dương: 187 Yersin, Tp.TDM</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Dĩ An - 82A Nguyễn An Ninh, Dĩ An, BD</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Đồng Xoài - 766 Phú Riềng Đỏ</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Biên Hòa: 30 Dương Tử Giang</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Thuận An - 132, Ngô Quyền, Thuận An, B.Dương</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Buôn Ma Thuột - 64 Phan Chu Trinh</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Tây Ninh: 586 Cách Mạng Tháng 8, P.3</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Vũng Tàu: 528 Trương Công Định</p></div></div><div><div id=&quot;rIndex1&quot;><h5 class=&quot;mb-0&quot;><a href=&quot;javascript:void(0);&quot; title=&quot;#collapse1&quot; aria-controls=&quot;collapse1&quot; class=&quot;btn btn-link&quot;><i class=&quot;fa fa-map-signs&quot;></i>&amp;nbsp;&amp;nbsp;Tp. Hồ Chí Minh</a></h5></div><div id=&quot;collapse1&quot; class=&quot;collapse&quot; aria-labelledby=&quot;rIndex1&quot; data-parent=&quot;#dsCuaHangConHang&quot;><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.7: 323 Huỳnh Tấn Phát</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.5: 190 Nguyễn Trãi, P.3</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.Bình Tân - 232 Lê Van Qu?i</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Hóc Môn - 39 đg. Quang Trung, Hóc Môn</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Tân Phú: 189, Hòa Bình</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q.12 - 290 Phan Văn Hớn Q.12</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q6 - 102 Hậu Giang Q.6 Tp. HCM</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q9 - 114 Đỗ Xuân Hợp, Q.9</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Q9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Bình Thạnh: 138 Đinh Tiên Hoàng</p></div></div><div><div id=&quot;rIndex2&quot;><h5 class=&quot;mb-0&quot;><a href=&quot;javascript:void(0);&quot; title=&quot;#collapse2&quot; aria-controls=&quot;collapse2&quot; class=&quot;btn btn-link&quot;><i class=&quot;fa fa-map-signs&quot;></i>&amp;nbsp;&amp;nbsp;Tây Nam Bộ</a></h5></div><div id=&quot;collapse2&quot; class=&quot;collapse&quot; aria-labelledby=&quot;rIndex2&quot; data-parent=&quot;#dsCuaHangConHang&quot;><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Rạch Giá: 290 Nguyễn Trung Trực</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Tân An - 492 Hùng Vương</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Sa Đéc - 289 Nguyễn Sinh Sắc, Sa Đéc</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Cà Mau - 111 Trần Hưng Đạo</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe L.Xuyên: 47 Tôn Đức Thắng</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Cần Thơ: 57 Nguyễn Trãi</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Mỹ Tho: 193N Ấp Bắc</p><p style='text-align:left;'><i class=&quot;fa fa-map-marker&quot;></i>&amp;nbsp;&amp;nbsp;YaMe Vĩnh Long: 27A Phạm Thái Bường, P4</p></div></div></div>" data-html="true" data-original-title="" title="">
+                                                        <b>26</b> CH còn
+                                                    </a>
+                                                </td>
+                                                    <td class="text-right">
+                                                        <form action="/cart/AddVariantToCart" method="POST">
+                                                            <input type="hidden" name="__ProductId" value="6c40eee9-3cce-98ad-a4f3-0017f78565f2">
+                                                            <input type="hidden" name="__VariantId" value="833816ea-1287-9aad-a4f3-0017f78565f2">
+                                                            <input type="hidden" name="__Characteristics" value="Đen, M">
+                                                            <input type="hidden" name="__Category" value="gu-don-gian">
+                                                            <a href="javascript:void(0);" class="js-addVariantToCart" style="color:#ff0000"><i class="fa fa-plus-circle" data-toggle="tooltip" title="" data-original-title="Thêm Đen, M vào giỏ hàng"></i> Chọn mua</a>
+                                                        </form>
+                                                    </td>
+    
+                                        </tr>
+                        </tbody></table>
+    
+                        
+    
+    
+    
+                        <div class="row mt-4">
+                            <div class="col-12 mb-2">
+                                <b>Hướng dẫn chọn size</b>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <form name="frmCheckSize" id="frmCheckSize" method="post" action="/ajax/checksize">
+                                    <div class="form-row align-items-center">
+                                        <div class="col-4 my-1">
+                                            <label class="sr-only" for="txtCanNang">Cân nặng</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="hidden" id="txtProductForm" name="txtProductForm" value="Áo Thun Form Tiêu Chuẩn">
+                                                <input type="hidden" id="txtTypeOfProduct" name="txtTypeOfProduct" value="Áo Thun Cổ Tròn">
+                                                <input type="text" class="form-control" id="txtCanNang" name="txtCanNang" placeholder="Cân nặng">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Kg</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 my-1">
+                                            <label class="sr-only" for="txtChieuCao">Chiều cao</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" id="txtChieuCao" name="txtChieuCao" placeholder="Chiều cao">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Cm</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto my-1">
+                                            <div class="input-group input-group-sm">
+                                                <button type="button" class="btn-sm btn-dark" style="height:31px;" name="btnCheckSize" id="btnCheckSize">Tìm</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div id="divCheckSizeResult" class="mt-2">
+    
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                    </div>
+    
+                        <div class="col-md-4 mb-4">
+                            <h5 class="display-6">Detailed Features</h5>
+                            {{product.title}}<br>{{product.description}}<br>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+            <div class="col-12 col-sm-12 mt-4 mb-4">
+                <h4 class="mb-4">YOU MAY ALSO LIKE</h4>
+                <div class="row">
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/ao-thun-co-tron-on-gian-y-nguyen-ban-ver8-0020335?c=Trắng">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/ao-thun-co-tron-on-gian-y-nguyen-ban-ver8-0020335/d1468b61-53a4-fa00-094c-001896681a3f.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Áo Thun Cổ Tròn Tối Giản Ver8">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    155                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/so-mi-td-r-on-gian-solid-m16-0020172?c=Xanh Dương">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/so-mi-td-r-on-gian-solid-m16-0020172/eeee6684-6405-8d00-0262-0018cd8c8f91.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Sơ Mi Tay Dài Tối Giản M16">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    285                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/ao-thun-tn-tc-solid-m7-0019915?c=Đen">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/ao-thun-tn-tc-solid-m7-0019915/da722461-2d2a-1800-7d33-00181b23eacd.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Áo Thun Cổ Tròn Tối Giản M5">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    185                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/ao-thun-nam-y2010-basic-td-k01-0019809?c=Đen">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/ao-thun-nam-y2010-basic-td-k01-0019809/dbf7f071-aef7-6100-0ff2-0018e39d6fbc.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Áo Thun Cổ Tròn Tối Giản K01">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    150                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/so-mi-nam-y2010-tn-l01-0019742?c=Trắng">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-l01-0019742/879ed421-c7e6-0d00-712f-0018dfa3dc0b.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Sơ Mi Tay Ngắn Tối Giản L01">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    225                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/ao-thun-tn-tc-on-gian-solid-m5-0020023?c=Vàng Nghệ">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/ao-thun-tn-tc-on-gian-solid-m5-0020023/bcebe8b2-0359-3a00-5a93-001818d9e4f3.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Áo Thun Cổ Tròn Tối Giản M5">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    185                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/so-mi-nam-no-style-td-km18-0018246?c=Trắng">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/so-mi-nam-no-style-td-km18-0018246/31aadf2f-485f-0200-f8e0-001823d06909.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Sơ Mi Tay Dài Tối Giản M11">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    255                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/quan-short-on-gian-y-original-ver5-0020275?c=Đen">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/quan-short-on-gian-y-original-ver5-0020275/a25bd980-bc95-1d00-3a95-0018680c0e2a.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Quần Short Tối Giản Ver5">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    285                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/ao-thun-nam-y2010-basic-as01-0019599?c=Đen">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/ao-thun-nam-y2010-basic-as01-0019599/334a16c1-b056-5b00-c37c-001819a380b3.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Áo Thun Cổ Tròn Tối Giản AS01">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    150                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/so-mi-nam-y2010-td-m01-0019743?c=Trắng">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-td-m01-0019743/611f060b-a4bb-0100-203d-0018cf20bba5.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Sơ Mi Tay Dài Tối Giản M01">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    255                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/so-mi-nam-y2010-td-n01-0019778?c=Trắng">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-td-n01-0019778/e64c29e7-6bd7-0700-7f86-0018cf21213d.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Sơ Mi Tay Dài Tối Giản N01">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    285                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-3 col-lg-2">
+                                <div class="pitem mb-2">
+                                    <input type="hidden" value="0">
+                                    <a href="/shop/gu-don-gian/ao-thun-nam-no-style-basic-st06-0019370?c=Đen">
+                                            <img class="img-fluid" loading="lazy" src="https://cdn2.yame.vn/pimg/ao-thun-nam-no-style-basic-st06-0019370/f7b8dd3d-8d96-2200-8a16-00173da87032.jpg?w=540&amp;h=756&amp;c=true&amp;ntf=false" alt="Áo Thun Cổ Tròn Tối Giản E13">
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                                <span class="price mb-1">
+    150                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    
+        <!-- Lightbox hero video -->
+            </div>
+
+{% endblock %}
+    {% block jsblock %}
+    {% endblock %}
